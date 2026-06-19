@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检验报告防伪查询</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #e8ecf1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px 10px;
+            min-height: 100vh;
+            font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+        }
+        .container {
+            max-width: 520px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+            padding: 16px;
+            position: relative;
+        }
+        .container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* ===== 覆盖层 - 左右分离布局 ===== */
+        .time-overlay {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 12.5%;
+            width: 88%;
+            padding: 1px 6px;
+            background: transparent;
+            border-radius: 4px;
+            text-align: center;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2px 8px;
+            flex-wrap: wrap;
+            pointer-events: none;
+        }
+
+        /* ===== 次数 - 左移，数字缩小 ===== */
+        .overlay-count {
+            color: #ffffff !important;
+            font-weight: 400;
+            font-size: 7.5px;
+            letter-spacing: 0.2px;
+            text-shadow: none !important;
+            filter: blur(0.3px);
+            opacity: 0.92;
+            transform: translate(-75.3px, 2.2px);
+        }
+        .overlay-count .count-value {
+            font-size: 8px;
+            font-weight: 500;
+            color: #ffffff !important;
+            text-shadow: none !important;
+            filter: blur(0.3px);
+            opacity: 0.92;
+        }
+
+        /* ===== 时间 - 右移，下移2px ===== */
+        .overlay-time {
+            color: #ffffff !important;
+            font-weight: 400;
+            font-size: 7.5px;
+            letter-spacing: 0.2px;
+            text-shadow: none !important;
+            filter: blur(0.3px);
+            opacity: 0.92;
+            transform: translate(14.5px, 2.5px);
+        }
+        .overlay-time .time-value {
+            font-weight: 400;
+            color: #ffffff !important;
+            text-shadow: none !important;
+            font-size: 7.5px;
+            filter: blur(0.3px);
+            opacity: 0.92;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #bbb;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ====== 图片 ====== -->
+        <img src="report.png" alt="检验报告防伪查询">
+
+        <!-- ====== 动态时间 ====== -->
+        <div class="time-overlay" id="timeDisplay">
+            <span class="overlay-count"><span class="count-value" id="viewCount">7</span></span>
+            <span class="overlay-time"><span class="time-value" id="currentTime">--</span></span>
+        </div>
+
+        <div class="footer">www.trktk.com · 特种设备服务平台</div>
+    </div>
+
+    <script>
+        (function() {
+            const REPORT_ID = 'QA-YQ-2026-0318';
+            const COUNT_KEY = 'report_view_count_' + REPORT_ID;
+            const LAST_TIME_KEY = 'report_last_time_' + REPORT_ID;
+
+            function getNowStr() {
+                const now = new Date();
+                const pad = n => String(n).padStart(2, '0');
+                return now.getFullYear() + '-' +
+                       pad(now.getMonth() + 1) + '-' +
+                       pad(now.getDate()) + ' ' +
+                       pad(now.getHours()) + ':' +
+                       pad(now.getMinutes()) + ':' +
+                       pad(now.getSeconds());
+            }
+
+            let count = localStorage.getItem(COUNT_KEY);
+            if (count === null) {
+                count = 0;
+            } else {
+                count = parseInt(count, 10);
+            }
+            count = count + 1;
+            localStorage.setItem(COUNT_KEY, String(count));
+
+            const nowStr = getNowStr();
+            localStorage.setItem(LAST_TIME_KEY, nowStr);
+
+            document.getElementById('viewCount').textContent = count;
+            document.getElementById('currentTime').textContent = nowStr;
+        })();
+    </script>
+
+</body>
+</html>
