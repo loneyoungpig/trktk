@@ -22,9 +22,6 @@
         .container {
             max-width: 520px;
             width: 100%;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
             padding: 12px;
             position: relative;
         }
@@ -35,7 +32,7 @@
             border-radius: 4px;
         }
 
-        /* ===== 覆盖层 - 使用 vw 单位实现自适应 ===== */
+        /* ===== 覆盖层 - 无背景 ===== */
         .time-overlay {
             position: absolute;
             left: 50%;
@@ -53,9 +50,10 @@
             gap: 2px 8px;
             flex-wrap: wrap;
             pointer-events: none;
+            margin-top: -3px;
         }
 
-        /* ===== 次数 - 使用 vw 单位自适应偏移 ===== */
+        /* ===== 次数 ===== */
         .overlay-count {
             color: #ffffff !important;
             font-weight: 400;
@@ -64,7 +62,7 @@
             text-shadow: none !important;
             filter: blur(0.3px);
             opacity: 0.92;
-            transform: translate(-75.3px, 2.2px);
+            transform: translate(-83.3px, 2.2px);
         }
         .overlay-count .count-value {
             font-size: 8px;
@@ -84,7 +82,7 @@
             text-shadow: none !important;
             filter: blur(0.3px);
             opacity: 0.92;
-            transform: translate(14.5px, 2.5px);
+            transform: translate(-0.5px, 2.5px);
         }
         .overlay-time .time-value {
             font-weight: 400;
@@ -105,10 +103,9 @@
         }
 
         /* ============================================================ */
-        /* ===== 手机屏幕适配（针对不同宽度自动调整） ===== */
+        /* ===== 手机屏幕适配 ===== */
         /* ============================================================ */
 
-        /* 小屏手机（宽度 < 400px） */
         @media screen and (max-width: 400px) {
             body {
                 padding: 6px 4px;
@@ -120,17 +117,18 @@
             .time-overlay {
                 top: 12%;
                 gap: 1px 4px;
+                margin-top: -3px;
             }
             .overlay-count {
                 font-size: 6px;
-                transform: translate(-38px, 1.5px);
+                transform: translate(-46px, 1.5px);
             }
             .overlay-count .count-value {
                 font-size: 6.5px;
             }
             .overlay-time {
                 font-size: 6px;
-                transform: translate(8px, 1.8px);
+                transform: translate(-7px, 1.8px);
             }
             .overlay-time .time-value {
                 font-size: 6px;
@@ -142,37 +140,42 @@
             }
         }
 
-        /* 中屏手机（400px - 480px） */
         @media screen and (min-width: 401px) and (max-width: 480px) {
+            .time-overlay {
+                margin-top: -3px;
+            }
             .overlay-count {
-                transform: translate(-52px, 2px);
+                transform: translate(-60px, 2px);
             }
             .overlay-time {
-                transform: translate(10px, 2.2px);
+                transform: translate(-5px, 2.2px);
             }
         }
 
-        /* 大屏手机/平板（481px - 600px） */
         @media screen and (min-width: 481px) and (max-width: 600px) {
+            .time-overlay {
+                margin-top: -3px;
+            }
             .overlay-count {
-                transform: translate(-62px, 2px);
+                transform: translate(-70px, 2px);
             }
             .overlay-time {
-                transform: translate(12px, 2.3px);
+                transform: translate(-3px, 2.3px);
             }
         }
 
-        /* 大屏设备（601px 以上）保持原始值 */
         @media screen and (min-width: 601px) {
+            .time-overlay {
+                margin-top: -3px;
+            }
             .overlay-count {
-                transform: translate(-75.3px, 2.2px);
+                transform: translate(-83.3px, 2.2px);
             }
             .overlay-time {
-                transform: translate(14.5px, 2.5px);
+                transform: translate(-0.5px, 2.5px);
             }
         }
 
-        /* ===== 针对 iPhone 刘海屏等全面屏适配 ===== */
         @supports (padding: max(0px)) {
             body {
                 padding-left: max(10px, env(safe-area-inset-left));
@@ -180,7 +183,6 @@
             }
         }
 
-        /* ===== 针对暗色模式，保持背景不变 ===== */
         @media (prefers-color-scheme: dark) {
             body {
                 background: #d0d4da;
@@ -194,16 +196,12 @@
 <body>
     <div class="container">
 
-        <!-- ====== 图片 ====== -->
         <img src="report.png" alt="检验报告防伪查询">
 
-        <!-- ====== 动态时间 ====== -->
         <div class="time-overlay" id="timeDisplay">
             <span class="overlay-count"><span class="count-value" id="viewCount">7</span></span>
             <span class="overlay-time"><span class="time-value" id="currentTime">--</span></span>
         </div>
-
-        <div class="footer">www.trktk.com · 特种设备服务平台</div>
     </div>
 
     <script>
