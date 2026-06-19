@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <!-- 允许用户缩放，最大3倍 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
     <title>检验报告防伪查询</title>
     <style>
         * {
@@ -24,6 +25,8 @@
             width: 100%;
             padding: 12px;
             position: relative;
+            /* 建立容器查询上下文 */
+            container-type: inline-size;
         }
         .container img {
             width: 100%;
@@ -32,14 +35,14 @@
             border-radius: 4px;
         }
 
-        /* ===== 覆盖层 - 无背景 ===== */
+        /* ===== 覆盖层 - 使用 cqi 单位（相对于容器宽度） ===== */
         .time-overlay {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            top: 12.5%;
-            width: 88%;
-            padding: 1px 6px;
+            top: 14.8%;
+            width: 70%;
+            padding: 0.2% 1%;
             background: transparent;
             border-radius: 4px;
             text-align: center;
@@ -47,50 +50,50 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 2px 8px;
+            gap: 2cqi 6cqi;
             flex-wrap: wrap;
             pointer-events: none;
             margin-top: 0px;
         }
 
-        /* ===== 次数 - 左移2px（从 -71.3px 变为 -73.3px） ===== */
+        /* ===== 次数 ===== */
         .overlay-count {
             color: #ffffff !important;
             font-weight: 400;
-            font-size: 5.5px;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.02cqi;
             text-shadow: none !important;
             filter: blur(0.3px);
             opacity: 0.92;
-            transform: translate(-73.3px, 3.2px);
+            transform: translate(-10.5cqi, 0.6%);
+            font-size: 1.05cqi;
         }
         .overlay-count .count-value {
-            font-size: 8px;
             font-weight: 500;
             color: #ffffff !important;
             text-shadow: none !important;
             filter: blur(0.3px);
             opacity: 0.92;
+            font-size: 1.5cqi;
         }
 
         /* ===== 时间 ===== */
         .overlay-time {
             color: #ffffff !important;
             font-weight: 400;
-            font-size: 5.5px;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.02cqi;
             text-shadow: none !important;
             filter: blur(0.3px);
             opacity: 0.92;
-            transform: translate(-0.5px, 2.7px);
+            transform: translate(0.5cqi, 0.4%);
+            font-size: 1.05cqi;
         }
         .overlay-time .time-value {
             font-weight: 400;
             color: #ffffff !important;
             text-shadow: none !important;
-            font-size: 7.5px;
             filter: blur(0.3px);
             opacity: 0.92;
+            font-size: 1.45cqi;
         }
 
         .footer {
@@ -102,77 +105,38 @@
             border-top: 1px solid #eee;
         }
 
-        /* ============================================================ */
-        /* ===== 手机屏幕适配 ===== */
-        /* ============================================================ */
-
-        @media screen and (max-width: 400px) {
-            body {
-                padding: 6px 4px;
-            }
-            .container {
-                padding: 8px;
-                border-radius: 8px;
-            }
-            .time-overlay {
-                top: 12%;
-                gap: 1px 4px;
-                margin-top: 1px;
-            }
+        /* ===== 限制最大最小值 ===== */
+        @media screen and (max-width: 320px) {
             .overlay-count {
-                font-size: 6px;
-                transform: translate(-46px, 2.5px);
+                font-size: 3.2px;
+                transform: translate(-9cqi, 0.6%);
             }
             .overlay-count .count-value {
-                font-size: 6.5px;
+                font-size: 4.8px;
             }
             .overlay-time {
-                font-size: 6px;
-                transform: translate(8px, 2.3px);
+                font-size: 3.2px;
+                transform: translate(1cqi, 0.4%);
             }
             .overlay-time .time-value {
-                font-size: 6px;
+                font-size: 4.5px;
             }
-            .footer {
+        }
+
+        @media screen and (min-width: 600px) {
+            .overlay-count {
+                font-size: 6.5px;
+                transform: translate(-63px, 0.6%);
+            }
+            .overlay-count .count-value {
+                font-size: 9.5px;
+            }
+            .overlay-time {
+                font-size: 6.5px;
+                transform: translate(3px, 0.4%);
+            }
+            .overlay-time .time-value {
                 font-size: 9px;
-                margin-top: 8px;
-                padding-top: 6px;
-            }
-        }
-
-        @media screen and (min-width: 401px) and (max-width: 480px) {
-            .time-overlay {
-                margin-top: 1px;
-            }
-            .overlay-count {
-                transform: translate(-60px, 3px);
-            }
-            .overlay-time {
-                transform: translate(10px, 2.7px);
-            }
-        }
-
-        @media screen and (min-width: 481px) and (max-width: 600px) {
-            .time-overlay {
-                margin-top: 1px;
-            }
-            .overlay-count {
-                transform: translate(-70px, 3px);
-            }
-            .overlay-time {
-                transform: translate(12px, 2.8px);
-            }
-        }
-
-        @media screen and (min-width: 601px) {
-            .time-overlay {
-                margin-top: 1px;
-            }
-            .overlay-count {
-                transform: translate(-73.3px, 3.2px);
-            }
-            .overlay-time {
-                transform: translate(-0.5px, 2.7px);
             }
         }
 
