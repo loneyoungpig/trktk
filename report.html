@@ -24,6 +24,7 @@
             width: 100%;
             padding: 12px;
             position: relative;
+            container-type: inline-size;
         }
         .container img {
             width: 100%;
@@ -32,14 +33,13 @@
             border-radius: 4px;
         }
 
-        /* ===== 覆盖层 - 无背景 ===== */
         .time-overlay {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            top: 12.5%;
-            width: 88%;
-            padding: 1px 6px;
+            top: 14.8%;
+            width: 70%;
+            padding: 0.2% 1%;
             background: transparent;
             border-radius: 4px;
             text-align: center;
@@ -47,22 +47,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 2px 8px;
+            gap: 2cqi 6cqi;
             flex-wrap: wrap;
             pointer-events: none;
             margin-top: 0px;
         }
 
-        /* ===== 次数 - 左移2px（从 -71.3px 变为 -73.3px） ===== */
         .overlay-count {
             color: #ffffff !important;
             font-weight: 400;
-            font-size: 5.5px;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.02cqi;
             text-shadow: none !important;
             filter: blur(0.3px);
             opacity: 0.92;
-            transform: translate(-73.3px, 3.2px);
+            transform: translate(-76.3px, 3.2px);
+            font-size: 5.5px;
         }
         .overlay-count .count-value {
             font-size: 8px;
@@ -73,16 +72,15 @@
             opacity: 0.92;
         }
 
-        /* ===== 时间 ===== */
         .overlay-time {
             color: #ffffff !important;
             font-weight: 400;
-            font-size: 5.5px;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.02cqi;
             text-shadow: none !important;
             filter: blur(0.3px);
             opacity: 0.92;
-            transform: translate(-0.5px, 2.7px);
+            transform: translate(9.5px, 2.7px);
+            font-size: 5.5px;
         }
         .overlay-time .time-value {
             font-weight: 400;
@@ -120,18 +118,18 @@
                 margin-top: 1px;
             }
             .overlay-count {
-                font-size: 6px;
-                transform: translate(-46px, 2.5px);
+                font-size: 3px;
+                transform: translate(-49px, 2.5px);
             }
             .overlay-count .count-value {
-                font-size: 6.5px;
+                font-size: 5px;
             }
             .overlay-time {
-                font-size: 6px;
-                transform: translate(8px, 2.3px);
+                font-size: 3px;
+                transform: translate(17px, 2.3px);
             }
             .overlay-time .time-value {
-                font-size: 6px;
+                font-size: 4.5px;
             }
             .footer {
                 font-size: 9px;
@@ -145,10 +143,18 @@
                 margin-top: 1px;
             }
             .overlay-count {
-                transform: translate(-60px, 3px);
+                font-size: 3.5px;
+                transform: translate(-63px, 3px);
+            }
+            .overlay-count .count-value {
+                font-size: 5.5px;
             }
             .overlay-time {
-                transform: translate(10px, 2.7px);
+                font-size: 3.5px;
+                transform: translate(19px, 2.7px);
+            }
+            .overlay-time .time-value {
+                font-size: 5px;
             }
         }
 
@@ -157,22 +163,39 @@
                 margin-top: 1px;
             }
             .overlay-count {
-                transform: translate(-70px, 3px);
+                font-size: 3.7px;
+                transform: translate(-73px, 3px);
+            }
+            .overlay-count .count-value {
+                font-size: 6px;
             }
             .overlay-time {
-                transform: translate(12px, 2.8px);
+                font-size: 3.7px;
+                transform: translate(21px, 2.8px);
+            }
+            .overlay-time .time-value {
+                font-size: 5.5px;
             }
         }
 
+        /* ===== 601px 以上：位置调整 + 字体加大1px ===== */
         @media screen and (min-width: 601px) {
             .time-overlay {
                 margin-top: 1px;
             }
             .overlay-count {
-                transform: translate(-73.3px, 3.2px);
+                transform: translate(-71.3px, -0.8px);
+                font-size: 6.5px;
+            }
+            .overlay-count .count-value {
+                font-size: 9px;
             }
             .overlay-time {
-                transform: translate(-0.5px, 2.7px);
+                transform: translate(6.5px, -1.3px);
+                font-size: 6.5px;
+            }
+            .overlay-time .time-value {
+                font-size: 8.5px;
             }
         }
 
