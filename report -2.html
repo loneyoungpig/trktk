@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>检验报告防伪查询</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #e8ecf1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 10px 8px;
+            min-height: 100vh;
+            font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+        }
+        .container {
+            max-width: 520px;
+            width: 100%;
+            padding: 12px;
+            position: relative;
+            container-type: inline-size;
+        }
+        .container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .time-overlay {
+            position: absolute;
+            left: 50%;
+            transform: translateX(calc(-50% + 60px)) translateY(1px);  /* 整体下移1px */
+            top: 12.5%;
+            width: 88%;
+            padding: 1px 6px 1px 12px;
+            background: transparent;
+            text-align: left;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1px;
+            pointer-events: none;
+            color: #ffffff;
+            font-weight: 400;
+            text-shadow: none;
+            opacity: 0.92;
+            line-height: 1.6;
+            filter: blur(0.5px);
+        }
+
+        .time-overlay .line1,
+        .time-overlay .line2,
+        .time-overlay .line3 {
+            font-size: 8.0px;
+            letter-spacing: 0.2px;
+        }
+        .time-overlay .line2 {
+            font-size: 7.5px;
+            letter-spacing: 0.1px;
+        }
+        .time-overlay .line3 {
+            font-size: 7.3px;
+            letter-spacing: 0.1px;
+        }
+        .time-overlay .line3 a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .time-overlay .count-value,
+        .time-overlay .time-value {
+            font-weight: 400;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #bbb;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        /* ===== 手机适配 ===== */
+        @media screen and (max-width: 400px) {
+            .time-overlay { padding-left: 8px; }
+            .time-overlay .line1 { font-size: 5.0px; }
+            .time-overlay .line2 { font-size: 4.7px; }
+            .time-overlay .line3 { font-size: 4.5px; }
+        }
+        @media screen and (min-width: 401px) and (max-width: 480px) {
+            .time-overlay { padding-left: 10px; }
+            .time-overlay .line1 { font-size: 5.5px; }
+            .time-overlay .line2 { font-size: 5.3px; }
+            .time-overlay .line3 { font-size: 5.0px; }
+        }
+        @media screen and (min-width: 481px) and (max-width: 600px) {
+            .time-overlay { padding-left: 11px; }
+            .time-overlay .line1 { font-size: 6.5px; }
+            .time-overlay .line2 { font-size: 6.3px; }
+            .time-overlay .line3 { font-size: 6.0px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="report.png" alt="检验报告防伪查询">
+
+        <div class="time-overlay" id="timeDisplay">
+            <div class="line1">
+                本报告第 <span class="count-value" id="viewCount">7</span> 次被查询 &nbsp; 本次查询时间：<span class="time-value" id="currentTime">--</span> &nbsp; 本次查询地址：223.160.195.63（中国北京）
+            </div>
+            <div class="line2">
+                北京市广电网
+            </div>
+            <div class="line3">
+                <a href="#">www.trktk.com</a> - 汽油运输大气污染物检测报告防伪平台
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const REPORT_ID = 'QA-YQ-2026-0318';
+            const COUNT_KEY = 'report_view_count_' + REPORT_ID;
+            const LAST_TIME_KEY = 'report_last_time_' + REPORT_ID;
+
+            function getNowStr() {
+                const now = new Date();
+                const pad = n => String(n).padStart(2, '0');
+                return now.getFullYear() + '-' +
+                       pad(now.getMonth() + 1) + '-' +
+                       pad(now.getDate()) + ' ' +
+                       pad(now.getHours()) + ':' +
+                       pad(now.getMinutes()) + ':' +
+                       pad(now.getSeconds());
+            }
+
+            let count = localStorage.getItem(COUNT_KEY);
+            if (count === null) count = 0;
+            else count = parseInt(count, 10);
+            count = count + 1;
+            localStorage.setItem(COUNT_KEY, String(count));
+
+            const nowStr = getNowStr();
+            localStorage.setItem(LAST_TIME_KEY, nowStr);
+
+            document.getElementById('viewCount').textContent = count;
+            document.getElementById('currentTime').textContent = nowStr;
+        })();
+    </script>
+</body>
+</html>
