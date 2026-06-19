@@ -58,7 +58,6 @@
             font-weight: 400;
             letter-spacing: 0.02cqi;
             text-shadow: none !important;
-            filter: blur(0.3px);
             opacity: 0.92;
             transform: translate(-73.3px, -0.8px);
             font-size: 6.5px;
@@ -68,7 +67,6 @@
             font-weight: 500;
             color: #ffffff !important;
             text-shadow: none !important;
-            filter: blur(0.3px);
             opacity: 0.92;
         }
 
@@ -77,17 +75,15 @@
             font-weight: 400;
             letter-spacing: 0.02cqi;
             text-shadow: none !important;
-            filter: blur(0.3px);
             opacity: 0.92;
             transform: translate(6px, -1.3px);
-            font-size: 6.8px;
+            font-size: 6.5px;
         }
         .overlay-time .time-value {
             font-weight: 400;
             color: #ffffff !important;
             text-shadow: none !important;
-            font-size: 8.8px;
-            filter: blur(0.3px);
+            font-size: 9px;
             opacity: 0.92;
         }
 
@@ -101,10 +97,9 @@
         }
 
         /* ============================================================ */
-        /* ===== 手机屏幕适配 - 次数左移2px，时间字体加大0.3px左移0.5px ===== */
+        /* ===== 手机屏幕适配 ===== */
         /* ============================================================ */
 
-        /* 小屏手机 (< 400px) */
         @media screen and (max-width: 400px) {
             body {
                 padding: 6px 4px;
@@ -121,16 +116,20 @@
             .overlay-count {
                 font-size: 3.5px;
                 transform: translate(-46.5px, -2.3px);
+                opacity: 0.92;
             }
             .overlay-count .count-value {
                 font-size: 5.5px;
+                opacity: 0.92;
             }
             .overlay-time {
-                font-size: 3.8px;
+                font-size: 3.5px;
                 transform: translate(11.5px, -1.8px);
+                opacity: 0.92;
             }
             .overlay-time .time-value {
-                font-size: 5.3px;
+                font-size: 5.5px;
+                opacity: 0.92;
             }
             .footer {
                 font-size: 9px;
@@ -139,7 +138,6 @@
             }
         }
 
-        /* 中屏手机 (401-480px) */
         @media screen and (min-width: 401px) and (max-width: 480px) {
             .time-overlay {
                 margin-top: 1px;
@@ -147,20 +145,23 @@
             .overlay-count {
                 font-size: 4px;
                 transform: translate(-60.5px, -2.3px);
+                opacity: 0.92;
             }
             .overlay-count .count-value {
                 font-size: 6.5px;
+                opacity: 0.92;
             }
             .overlay-time {
-                font-size: 4.3px;
+                font-size: 4px;
                 transform: translate(13.5px, -1.8px);
+                opacity: 0.92;
             }
             .overlay-time .time-value {
-                font-size: 5.8px;
+                font-size: 6.5px;
+                opacity: 0.92;
             }
         }
 
-        /* 大屏手机 (481-600px) */
         @media screen and (min-width: 481px) and (max-width: 600px) {
             .time-overlay {
                 margin-top: 1px;
@@ -168,20 +169,37 @@
             .overlay-count {
                 font-size: 5px;
                 transform: translate(-70.5px, -2.3px);
+                opacity: 0.92;
             }
             .overlay-count .count-value {
                 font-size: 7.5px;
+                opacity: 0.92;
             }
             .overlay-time {
-                font-size: 5.3px;
+                font-size: 5px;
                 transform: translate(15.5px, -1.8px);
+                opacity: 0.92;
             }
             .overlay-time .time-value {
-                font-size: 6.8px;
+                font-size: 7.5px;
+                opacity: 0.92;
             }
         }
 
-        /* 601px 以上保持默认（已在基础样式中定义） */
+        @media screen and (min-width: 601px) {
+            .overlay-count {
+                opacity: 0.92;
+            }
+            .overlay-count .count-value {
+                opacity: 0.92;
+            }
+            .overlay-time {
+                opacity: 0.92;
+            }
+            .overlay-time .time-value {
+                opacity: 0.92;
+            }
+        }
 
         @supports (padding: max(0px)) {
             body {
