@@ -20,7 +20,7 @@
             font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
         }
         .container {
-            max-width: 520px;
+            max-width: 560px;  /* 再次放大20px，从540px增加到560px */
             width: 100%;
             padding: 12px;
             position: relative;
@@ -28,7 +28,7 @@
         }
         .container img {
             width: 100%;
-            height: auto;
+            height: auto;      /* 保持宽高比，高度随宽度自动按比例放大 */
             display: block;
             border-radius: 4px;
         }
@@ -36,7 +36,7 @@
         .time-overlay {
             position: absolute;
             left: 50%;
-            transform: translateX(calc(-50% + 47px)) translateY(1px);
+            transform: translateX(calc(-50% + 51px)) translateY(1px); /* 偏移量从49px微调至51px，适应宽度变化 */
             top: 12.5%;
             width: 88%;
             padding: 1px 6px 1px 12px;
@@ -55,7 +55,7 @@
             line-height: 1.6;
         }
 
-        /* 字体大幅度缩小（现在变得非常小） */
+        /* 字体保持极小 */
         .time-overlay .line1 {
             font-size: 0.5px;
             letter-spacing: 0.2px;
