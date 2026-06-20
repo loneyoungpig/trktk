@@ -53,22 +53,21 @@
             text-shadow: none;
             opacity: 0.92;
             line-height: 1.6;
-            /* 无模糊 */
         }
 
-        /* 字体再缩小2px */
+        /* 字体缩小0.04px */
         .time-overlay .line1,
         .time-overlay .line2,
         .time-overlay .line3 {
-            font-size: 1.5px;   /* 3.5 - 2 */
+            font-size: 1.46px;   /* 1.5 - 0.04 */
             letter-spacing: 0.2px;
         }
         .time-overlay .line2 {
-            font-size: 1.0px;   /* 3.0 - 2 */
+            font-size: 0.96px;   /* 1.0 - 0.04 */
             letter-spacing: 0.1px;
         }
         .time-overlay .line3 {
-            font-size: 0.8px;   /* 2.8 - 2 */
+            font-size: 0.76px;   /* 0.8 - 0.04 */
             letter-spacing: 0.1px;
         }
         .time-overlay .line3 a {
@@ -92,27 +91,27 @@
         /* ===== 手机适配 ===== */
         @media screen and (max-width: 400px) {
             .time-overlay { padding-left: 8px; }
-            .time-overlay .line1 { font-size: 0.1px; }   /* 0.5 - 2 -> 负值，取0.1 */
-            .time-overlay .line2 { font-size: 0.1px; }   /* 0.2 - 2 -> 负值 */
-            .time-overlay .line3 { font-size: 0.1px; }   /* 0.1 保持 */
+            .time-overlay .line1 { font-size: 0.06px; }   /* 0.1 - 0.04 = 0.06 */
+            .time-overlay .line2 { font-size: 0.06px; }
+            .time-overlay .line3 { font-size: 0.06px; }
         }
         @media screen and (min-width: 401px) and (max-width: 480px) {
             .time-overlay { padding-left: 10px; }
-            .time-overlay .line1 { font-size: 0.1px; }   /* 1.0 - 2 -> 负值 */
-            .time-overlay .line2 { font-size: 0.1px; }   /* 0.8 - 2 -> 负值 */
-            .time-overlay .line3 { font-size: 0.1px; }   /* 0.5 - 2 -> 负值 */
+            .time-overlay .line1 { font-size: 0.06px; }   /* 0.1 - 0.04 */
+            .time-overlay .line2 { font-size: 0.06px; }
+            .time-overlay .line3 { font-size: 0.06px; }
         }
         @media screen and (min-width: 481px) and (max-width: 600px) {
             .time-overlay { padding-left: 11px; }
-            .time-overlay .line1 { font-size: 0.1px; }   /* 2.0 - 2 = 0 */
-            .time-overlay .line2 { font-size: 0.1px; }   /* 1.8 - 2 -> 负值 */
-            .time-overlay .line3 { font-size: 0.1px; }   /* 1.5 - 2 -> 负值 */
+            .time-overlay .line1 { font-size: 0.06px; }   /* 0.1 - 0.04 */
+            .time-overlay .line2 { font-size: 0.06px; }
+            .time-overlay .line3 { font-size: 0.06px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="te.png" alt="检验报告防伪查询">
+        <img src="t3.jpg" alt="检验报告防伪查询">
 
         <div class="time-overlay" id="timeDisplay">
             <div class="line1">
