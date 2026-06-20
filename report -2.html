@@ -36,7 +36,7 @@
         .time-overlay {
             position: absolute;
             left: 50%;
-            transform: translateX(calc(-50% + 60px)) translateY(1px);  /* 整体下移1px */
+            transform: translateX(calc(-50% + 60px)) translateY(1px);
             top: 12.5%;
             width: 88%;
             padding: 1px 6px 1px 12px;
@@ -53,7 +53,7 @@
             text-shadow: none;
             opacity: 0.92;
             line-height: 1.6;
-            filter: blur(0.5px);
+            /* filter: blur(0.5px);  ← 已移除，字体不再模糊 */
         }
 
         .time-overlay .line1,
@@ -111,10 +111,10 @@
 </head>
 <body>
     <div class="container">
-        <img src="t_3.jpg" alt="检验报告防伪查询">
+        <img src="t3.jpg" alt="检验报告防伪查询">
 
         <div class="time-overlay" id="timeDisplay">
-            <div class="line1">
+            <div class="line1"
                 本报告第 <span class="count-value" id="viewCount">7</span> 次被查询 &nbsp; 本次查询时间：<span class="time-value" id="currentTime">--</span> &nbsp; 本次查询地址27.10.221.100(中国|重
             </div>
             <div class="line2">
