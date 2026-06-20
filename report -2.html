@@ -36,7 +36,7 @@
         .time-overlay {
             position: absolute;
             left: 50%;
-            transform: translateX(calc(-50% + 47px)) translateY(1px);  /* 左移8px（55→47） */
+            transform: translateX(calc(-50% + 47px)) translateY(1px);
             top: 12.5%;
             width: 88%;
             padding: 1px 6px 1px 12px;
@@ -53,22 +53,22 @@
             text-shadow: none;
             opacity: 0.92;
             line-height: 1.6;
-            filter: blur(0.5px);
+            /* 已取消模糊 */
         }
 
-        /* 字体再缩小0.5px */
+        /* 字体再缩小1px */
         .time-overlay .line1,
         .time-overlay .line2,
         .time-overlay .line3 {
-            font-size: 6.0px;   /* 6.5 - 0.5 */
+            font-size: 5.0px;   /* 6.0 - 1 */
             letter-spacing: 0.2px;
         }
         .time-overlay .line2 {
-            font-size: 5.5px;   /* 6.0 - 0.5 */
+            font-size: 4.5px;   /* 5.5 - 1 */
             letter-spacing: 0.1px;
         }
         .time-overlay .line3 {
-            font-size: 5.3px;   /* 5.8 - 0.5 */
+            font-size: 4.3px;   /* 5.3 - 1 */
             letter-spacing: 0.1px;
         }
         .time-overlay .line3 a {
@@ -92,21 +92,21 @@
         /* ===== 手机适配 ===== */
         @media screen and (max-width: 400px) {
             .time-overlay { padding-left: 8px; }
-            .time-overlay .line1 { font-size: 3.0px; }   /* 3.5 - 0.5 */
-            .time-overlay .line2 { font-size: 2.7px; }   /* 3.2 - 0.5 */
-            .time-overlay .line3 { font-size: 2.5px; }   /* 3.0 - 0.5 */
+            .time-overlay .line1 { font-size: 2.0px; }   /* 3.0 - 1 */
+            .time-overlay .line2 { font-size: 1.7px; }   /* 2.7 - 1 */
+            .time-overlay .line3 { font-size: 1.5px; }   /* 2.5 - 1 */
         }
         @media screen and (min-width: 401px) and (max-width: 480px) {
             .time-overlay { padding-left: 10px; }
-            .time-overlay .line1 { font-size: 3.5px; }   /* 4.0 - 0.5 */
-            .time-overlay .line2 { font-size: 3.3px; }   /* 3.8 - 0.5 */
-            .time-overlay .line3 { font-size: 3.0px; }   /* 3.5 - 0.5 */
+            .time-overlay .line1 { font-size: 2.5px; }   /* 3.5 - 1 */
+            .time-overlay .line2 { font-size: 2.3px; }   /* 3.3 - 1 */
+            .time-overlay .line3 { font-size: 2.0px; }   /* 3.0 - 1 */
         }
         @media screen and (min-width: 481px) and (max-width: 600px) {
             .time-overlay { padding-left: 11px; }
-            .time-overlay .line1 { font-size: 4.5px; }   /* 5.0 - 0.5 */
-            .time-overlay .line2 { font-size: 4.3px; }   /* 4.8 - 0.5 */
-            .time-overlay .line3 { font-size: 4.0px; }   /* 4.5 - 0.5 */
+            .time-overlay .line1 { font-size: 3.5px; }   /* 4.5 - 1 */
+            .time-overlay .line2 { font-size: 3.3px; }   /* 4.3 - 1 */
+            .time-overlay .line3 { font-size: 3.0px; }   /* 4.0 - 1 */
         }
     </style>
 </head>
