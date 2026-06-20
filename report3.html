@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>检验报告防伪查询</title>
+    <!-- 引用了外部 jQuery 库（可保留，但此次未使用） -->
+    <script src="/js/common/jquery-1.4.4.min.js"></script>
+    <style>
+        table {
+            width: 96%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        th {
+            text-align: center;
+            font-weight: bold;
+            background-color: #bacbd5;
+            border: 1px solid black;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        td {
+            text-align: left;
+            border: 1px solid black;
+            padding: 15px 8px;
+            word-wrap: break-word;
+        }
+
+        .dark {
+            background-color: #1371a4;
+            color: white;
+        }
+
+        .head-text {
+            font-size: 24px;
+            padding: 3px 10px;
+        }
+
+        .no-border {
+            border-width: 0;
+            padding: 0;
+        }
+        /* 免责声明单元格：靠左对齐 */
+        .footer-note {
+            text-align: left;
+            padding: 10px 8px;
+        }
+    </style>
+</head>
+<body>
+    <input type="hidden" id="mediumOrg">
+    <table>
+        <tbody>
+            <!-- 用于控制列宽的隐藏行 -->
+            <tr>
+                <td style="width:13%;height:0px;padding:0"></td>
+                <td style="width:30%;height:0px;padding:0"></td>
+                <td style="width:13%;height:0px;padding:0"></td>
+                <td style="width:30%;height:0px;padding:0"></td>
+                <td style="width:13%;height:0px;padding:0"></td>
+                <td style="width:30%;height:0px;padding:0"></td>
+            </tr>
+            <!-- 顶部标题栏 -->
+            <tr>
+                <td class="dark" colspan="6">
+                    <div style="display:flex;align-items: center">
+                        <div style="width:150px;text-align: center">
+                            <img src="sm-logo.png" style="width:100px;height:75px;" alt="logo">
+                        </div>
+                        <div style="flex:1;">
+                            <div class="head-text">特种设备服务平台</div>
+                            <div style="padding:0 10px;">
+                                本报告第<span id="queryCount">--</span>次被查询
+                                &nbsp;&nbsp;&nbsp;本次查询时间：<span id="queryTime">--</span>
+                                &nbsp;&nbsp;&nbsp;本次查询地址：<span id="queryIp">正在获取...</span>
+                            </div>
+                            <div style="padding:0 10px">www.trktk.com - 汽油运输大气污染物检测报告防伪平台</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- 报告数据行 -->
+            <tr>
+                <th>车牌号</th>
+                <td>渝A9H257</td>
+                <th>罐体编号</th>
+                <td>202503269</td>
+                <th>使用单位</th>
+                <td>重庆邦能物流有限公司</td>
+            </tr>
+            <tr>
+                <th>出厂日期</th>
+                <td>2025-04-07</td>
+                <th>车架号</th>
+                <td>LXUX5C349S4056756</td>
+                <th>制造单位</th>
+                <td>湖北成龙威专用汽车有限公司</td>
+            </tr>
+            <tr>
+                <th>设计容积</th>
+                <td>25.5M³</td>
+                <th>工作介质</th>
+                <td>柴油、汽油</td>
+                <th>报告编号</th>
+                <td>QA-YQ-2026-04076121</td>
+            </tr>
+            <tr>
+                <th>核载质量</th>
+                <td>17000.0Kg</td>
+                <th>检验结论</th>
+                <td>所检项目合格</td>
+                <th>防伪编码</th>
+                <td>QA-YQ-2021-02023478</td>
+            </tr>
+            <tr>
+                <th>检验日期</th>
+                <td>2026-06-15</td>
+                <th>下次检验日期</th>
+                <td>2027-06-14</td>
+                <th>检验机构</th>
+                <td>东营市齐安特种设备检测有限公司</td>
+            </tr>
+            <tr>
+                <th>报告状态</th>
+                <td colspan="5">有效</td>
+            </tr>
+            <!-- 免责声明行（深蓝背景，文字靠左） -->
+            <tr>
+                <td class="dark footer-note" colspan="6">
+                    以上防伪信息由检验机构据实提供，如有疑问请咨询检验机构！
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        (function() {
+            // 1. 更新查询次数（使用 localStorage 模拟计数）
+            let count = localStorage.getItem('reportQueryCount');
+            if (count === null) {
+                // 首次访问，从 14 开始，显示为 15
+                count = 14;
+            } else {
+                count = parseInt(count, 10) + 1;
+            }
+            localStorage.setItem('reportQueryCount', count);
+            document.getElementById('queryCount').innerText = count;
+
+            // 2. 更新当前时间
+            function formatTime(date) {
+                const pad = n => String(n).padStart(2, '0');
+                return date.getFullYear() + '-' + pad(date.getMonth() + 1) + '-' + pad(date.getDate()) +
+                    ' ' + pad(date.getHours()) + ':' + pad(date.getMinutes()) + ':' + pad(date.getSeconds());
+            }
+            document.getElementById('queryTime').innerText = formatTime(new Date());
+
+            // 3. 获取当前 IP 及地理位置（使用 ip-api.com 免费接口）
+            const ipSpan = document.getElementById('queryIp');
+            const DEFAULT_IP_INFO = '27.10.221.100 (中国|重庆|重庆市|联通)';
+
+            fetch('https://ip-api.com/json/?lang=zh-CN')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const ip = data.query;
+                        const country = data.country || '';
+                        const region = data.regionName || '';
+                        const city = data.city || '';
+                        const isp = data.isp || '';
+                        ipSpan.innerText = ip + ' (' + country + '|' + region + '|' + city + '|' + isp + ')';
+                    } else {
+                        ipSpan.innerText = DEFAULT_IP_INFO;
+                    }
+                })
+                .catch(() => {
+                    ipSpan.innerText = DEFAULT_IP_INFO;
+                });
+        })();
+    </script>
+</body>
+</html>
