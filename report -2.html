@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>www.trktk.com</title>
+    <title>检验报告防伪查询</title>
     <style>
         * {
             margin: 0;
@@ -53,22 +53,22 @@
             text-shadow: none;
             opacity: 0.92;
             line-height: 1.6;
-            /* 已取消模糊 */
+            /* 无模糊 */
         }
 
-        /* 字体再缩小1px */
+        /* 字体再缩小1.5px */
         .time-overlay .line1,
         .time-overlay .line2,
         .time-overlay .line3 {
-            font-size: 5.0px;   /* 6.0 - 1 */
+            font-size: 3.5px;   /* 5.0 - 1.5 */
             letter-spacing: 0.2px;
         }
         .time-overlay .line2 {
-            font-size: 4.5px;   /* 5.5 - 1 */
+            font-size: 3.0px;   /* 4.5 - 1.5 */
             letter-spacing: 0.1px;
         }
         .time-overlay .line3 {
-            font-size: 4.3px;   /* 5.3 - 1 */
+            font-size: 2.8px;   /* 4.3 - 1.5 */
             letter-spacing: 0.1px;
         }
         .time-overlay .line3 a {
@@ -92,21 +92,23 @@
         /* ===== 手机适配 ===== */
         @media screen and (max-width: 400px) {
             .time-overlay { padding-left: 8px; }
-            .time-overlay .line1 { font-size: 2.0px; }   /* 3.0 - 1 */
-            .time-overlay .line2 { font-size: 1.7px; }   /* 2.7 - 1 */
-            .time-overlay .line3 { font-size: 1.5px; }   /* 2.5 - 1 */
+            .time-overlay .line1 { font-size: 0.5px; }   /* 2.0 - 1.5 */
+            .time-overlay .line2 { font-size: 0.2px; }   /* 1.7 - 1.5 */
+            .time-overlay .line3 { font-size: 0.0px; }   /* 1.5 - 1.5 = 0，设置最小为0.1px保持可见 */
+            /* 修正极小值，避免0px完全不可见，设为0.1px */
+            .time-overlay .line3 { font-size: 0.1px; }
         }
         @media screen and (min-width: 401px) and (max-width: 480px) {
             .time-overlay { padding-left: 10px; }
-            .time-overlay .line1 { font-size: 2.5px; }   /* 3.5 - 1 */
-            .time-overlay .line2 { font-size: 2.3px; }   /* 3.3 - 1 */
-            .time-overlay .line3 { font-size: 2.0px; }   /* 3.0 - 1 */
+            .time-overlay .line1 { font-size: 1.0px; }   /* 2.5 - 1.5 */
+            .time-overlay .line2 { font-size: 0.8px; }   /* 2.3 - 1.5 */
+            .time-overlay .line3 { font-size: 0.5px; }   /* 2.0 - 1.5 */
         }
         @media screen and (min-width: 481px) and (max-width: 600px) {
             .time-overlay { padding-left: 11px; }
-            .time-overlay .line1 { font-size: 3.5px; }   /* 4.5 - 1 */
-            .time-overlay .line2 { font-size: 3.3px; }   /* 4.3 - 1 */
-            .time-overlay .line3 { font-size: 3.0px; }   /* 4.0 - 1 */
+            .time-overlay .line1 { font-size: 2.0px; }   /* 3.5 - 1.5 */
+            .time-overlay .line2 { font-size: 1.8px; }   /* 3.3 - 1.5 */
+            .time-overlay .line3 { font-size: 1.5px; }   /* 3.0 - 1.5 */
         }
     </style>
 </head>
